@@ -1,37 +1,51 @@
 .navbar {
   display: flex;
+  align-items: center;          /* 🔥 KEY FIX */
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: #0a0f1f;
+  padding: 16px 6%;
+  background: linear-gradient(135deg, #020617, #020c2b);
 }
 
-.logo {
-  color: #00c6ff;
+/* LOGO */
+.nav-logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #f8fafc;
 }
 
+/* LINKS */
 .nav-links {
   display: flex;
-  gap: 25px;
+  align-items: center;          /* 🔥 KEY FIX */
+  gap: 30px;
   list-style: none;
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: #f8fafc;
   text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
+  font-size: 16px;
+  position: relative;
 }
 
-.nav-links a:hover {
-  color: #00c6ff;
-  transform: scale(1.1);
+/* HOVER LINE */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
 }
 
-.dark-btn {
-  background: #00c6ff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* RIGHT SIDE */
+.nav-actions {
+  display: flex;
+  align-items: center;          /* 🔥 KEY FIX */
 }

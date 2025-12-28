@@ -1,42 +1,22 @@
 .dark-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 12px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  font-size: 18px;
-  z-index: 9999;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .dark-toggle:hover {
   transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
 }
 
-/* Dark theme styles */
-body.dark {
-  background-color: #0f172a;
-  color: #e5e7eb;
-}
-
-body.dark a {
-  color: #38bdf8;
-}
-
-body.dark header,
-body.dark footer,
-body.dark nav {
-  background-color: #020617;
-}
-
-body.dark input,
-body.dark textarea {
-  background-color: #020617;
-  color: #fff;
-  border: 1px solid #334155;
+.dark-toggle svg {
+  font-size: 18px;
+  color: var(--accent);
 }

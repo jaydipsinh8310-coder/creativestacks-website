@@ -14,7 +14,7 @@ export default function Footer() {
             <h3>About Company</h3>
             <p>
               <strong>Address</strong><br />
-              Bhavnagar -364003 ,
+              Bhavnagar -364004 ,
               Gujrat 
             </p>
           </div>
@@ -23,9 +23,7 @@ export default function Footer() {
           <div className="footer-column">
             <h3>Service</h3>
             <ul>
-              <li>Privacy Policy</li>
-              <li>Services</li>
-              <li>SAP Services</li>
+             <li>SAP Services</li>
               <li>Planning Solutions Services</li>
               <li>Staffing Services</li>
               <li>IT Training Courses</li>
@@ -35,19 +33,17 @@ export default function Footer() {
           {/* LINKS */}
           <div className="footer-column">
             <h3>Useful Links</h3>
-            <ul>
-              <li>Home</li>
-              <li>About Us</li>
-              <li>Services</li>
-              <li>Career</li>
-              <li>Contact</li>
-            </ul>
+            <ul className="nav-links">
+         <li><a href="#hero fade-down">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
           © 2025. All Rights Reserved | Powered by
-          <span>creative stacks</span>
+          <span>⚡ creative stacks</span>
         </div>
       </footer>
 
