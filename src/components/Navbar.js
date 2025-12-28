@@ -1,5 +1,4 @@
 import React from "react";
-import DarkMode from "./DarkMode";
 import "./Navbar.css";
 
 
@@ -15,7 +14,6 @@ export default function Navbar() {
       </ul>
 
       <div className="nav-actions">
-        <DarkMode />
       </div>
     </nav>
   );

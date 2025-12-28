@@ -4,7 +4,6 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Whatsapp from "./components/Whatsapp";
 import Footer from "./components/Footer";
-import DarkMode from "./components/DarkMode";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Hero";
 
@@ -24,7 +23,6 @@ function App() {
       <Contact />
       <Whatsapp />
       <Footer />
-     <DarkMode />
     </>
   );
 }
