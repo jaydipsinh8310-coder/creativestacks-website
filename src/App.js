@@ -4,23 +4,29 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Whatsapp from "./components/Whatsapp";
 import Footer from "./components/Footer";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Hero";
-
 
 import "./App.css";
 
 function App() {
   return (
     <>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-      
-    
-      <Services />
-      <Contact />
+      <Navbar />
+
+      {/* HERO */}
+      <section id="hero">
+        <Hero />
+      </section>
+
+      {/* SERVICES */}
+      <section id="services">
+        <Services />
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact">
+        <Contact />
+      </section>
+
       <Whatsapp />
       <Footer />
     </>
