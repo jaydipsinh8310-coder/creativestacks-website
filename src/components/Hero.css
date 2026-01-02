@@ -1,0 +1,132 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0f172a, #020617);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* CANVAS */
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* SPACE OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(15, 23, 42, 0.2),
+    rgba(2, 6, 23, 0.85)
+  );
+  z-index: 1;
+}
+
+/* CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.hero-content h1 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+  background: linear-gradient(90deg, #eff1f1, #f7f8f8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #cbd5f5;
+  margin-bottom: 40px;
+}
+.plain {
+  color: #ffffff;
+}
+.hero-content .typing {
+  background: linear-gradient(90deg, #38bdf8, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* CURSOR */
+.cursor {
+  color: #38bdf8;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+/* CTA */
+.btn.primary {
+  padding: 15px 40px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #38bdf8, #22d3ee);
+  color: #020617;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.45);
+  transition: all 0.35s ease;
+}
+
+.btn.primary:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 25px 55px rgba(56, 189, 248, 0.65);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+}
+/* Active link */
+.nav-links li.active {
+  color: #38bdf8;
+}
+
+/* Active underline stays visible */
+.nav-links li.active::after {
+  width: 100%;
+}
+
+/* Optional glow effect */
+.nav-links li.active {
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+#hero {
+  min-height: 100svh; /* 🔥 mobile safe */
+  padding-top: 80px; /* navbar space */
+  overflow-x: hidden;
+  overflow-y: visible; /* 🔥 */
+}

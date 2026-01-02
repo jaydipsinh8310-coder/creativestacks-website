@@ -3,6 +3,10 @@ import "./Footer.css";
 import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <footer className="footer">
@@ -14,8 +18,8 @@ export default function Footer() {
             <h3>About Company</h3>
             <p>
               <strong>Address</strong><br />
-              Bhavnagar -364004 ,
-              Gujrat 
+              Bhavnagar -364004,<br />
+              Gujarat
             </p>
           </div>
 
@@ -23,7 +27,7 @@ export default function Footer() {
           <div className="footer-column">
             <h3>Service</h3>
             <ul>
-             <li>SAP Services</li>
+              <li>SAP Services</li>
               <li>Planning Solutions Services</li>
               <li>Staffing Services</li>
               <li>IT Training Courses</li>
@@ -34,15 +38,15 @@ export default function Footer() {
           <div className="footer-column">
             <h3>Useful Links</h3>
             <ul>
-         <li><a href="#hero fade-down">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+              <li onClick={() => scrollTo("hero")}>Home</li>
+              <li onClick={() => scrollTo("services")}>Services</li>
+              <li onClick={() => scrollTo("contact")}>Contact</li>
+            </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          © 2025. All Rights Reserved | Powered by
+          © 2025. All Rights Reserved | Powered by{" "}
           <span>⚡ creative stacks</span>
         </div>
       </footer>
