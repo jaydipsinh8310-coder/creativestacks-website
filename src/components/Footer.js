@@ -33,7 +33,7 @@ export default function Footer() {
           {/* LINKS */}
           <div className="footer-column">
             <h3>Useful Links</h3>
-            <ul className="nav-links">
+            <ul>
          <li><a href="#hero fade-down">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
