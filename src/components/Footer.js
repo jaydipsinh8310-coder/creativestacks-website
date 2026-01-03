@@ -4,7 +4,6 @@ import { Float, OrbitControls } from "@react-three/drei";
 import { motion } from "framer-motion";
 import "./Footer.css";
 
-
 /* 3D Core */
 function AboutCore() {
   return (
@@ -23,6 +22,10 @@ function AboutCore() {
 }
 
 export default function About() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="about" className="about-section">
       {/* 3D */}
@@ -42,57 +45,62 @@ export default function About() {
         className="about-content"
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
         <span className="tag">ABOUT US</span>
-
-        <h1>Meet the Minds Behind Innovation</h1>
+        <h1>Building Digital Systems That Scale</h1>
 
         <p>
-          We are a technology-driven team building scalable,
-          secure and future-ready digital products.
+          We are a technology-driven IT company focused on building
+          scalable, secure, and high-performance digital solutions
+          for modern businesses.
         </p>
 
-        {/* TEAM */}
-        <div className="team-grid">
+        {/* WHAT WE DO */}
+        <div className="about-lines">
           {[
-            {
-              name: "Jaydipsinh Parmar",
-            },
-            {
-              name: "Harshdipsinh jadeja",
-              
-            },
-            {
-              //img: ui,
-              name: "Jenil dave",
-            },
-            {
-              //img: ui,
-              name: "Harsh baraiya",
-            },
-            {
-              //img: ui,
-              name: "Harsh dave",
-            },
-          ].map((member, i) => (
+            "Custom Web & Application Development",
+            "Enterprise SAP Consulting & Support",
+            "Cloud-Ready & Secure Architecture",
+            "UI/UX Design with Performance Focus",
+          ].map((text, i) => (
             <motion.div
               key={i}
-              className="team-card"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="line-item"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.15 }}
               viewport={{ once: true }}
             >
-              <div className="avatar">
-                <img src={member.img} alt={member.name} />
-              </div>
-              <h3>{member.name}</h3>
-              <span>{member.role}</span>
+              <span className="dot" />
+              <span>{text}</span>
             </motion.div>
-            
           ))}
+        </div>
+
+        {/* QUICK LINKS */}
+        <div className="about-links">
+          <span onClick={() => scrollTo("services")}>
+            → Explore Our Services
+          </span>
+          <span onClick={() => scrollTo("contact")}>
+            → Start a Project
+          </span>
+        </div>
+
+        {/* ADDRESS */}
+        <div className="about-address">
+          <h3>Office Address</h3>
+          <p>
+            Bhavnagar – 364004 <br />
+            Gujarat, India
+          </p>
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="about-footer">
+          © {new Date().getFullYear()} Creative Stacks. All Rights Reserved.  for more info.~mail on creativestack0@gmail.com
         </div>
       </motion.div>
     </section>
