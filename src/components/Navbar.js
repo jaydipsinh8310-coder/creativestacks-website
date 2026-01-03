@@ -12,7 +12,7 @@ const Navbar = () => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
 
-      ["hero", "services", "contact"].forEach((id) => {
+      ["hero", "services", "contact","about",].forEach((id) => {
         const section = document.getElementById(id);
         if (!section) return;
 
@@ -33,7 +33,7 @@ const Navbar = () => {
     setActive(id);
   };
 
-  /* Desktop mouse-follow 3D tilt only */
+  /* Desktop mouse-follow 3D tilt */
   const handleMouseMove = (e) => {
     if (isTouchDevice) return;
 
@@ -43,11 +43,8 @@ const Navbar = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = -(y - centerY) / 10;
-    const rotateY = (x - centerX) / 10;
+    const rotateX = -(y - rect.height / 2) / 10;
+    const rotateY = (x - rect.width / 2) / 10;
 
     el.style.transform = `
       perspective(1000px)
@@ -86,6 +83,7 @@ const Navbar = () => {
           { id: "hero", label: "Home" },
           { id: "services", label: "Services" },
           { id: "contact", label: "Contact" },
+          { id: "about", label: "About" },
         ].map((item) => (
           <li
             key={item.id}

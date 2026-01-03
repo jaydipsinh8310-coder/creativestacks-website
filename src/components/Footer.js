@@ -1,69 +1,102 @@
-import React from "react";
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Float, OrbitControls } from "@react-three/drei";
+import { motion } from "framer-motion";
 import "./Footer.css";
-import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 
-export default function Footer() {
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
 
+
+/* 3D Core */
+function AboutCore() {
   return (
-    <>
-      <footer className="footer">
-        <div className="footer-overlay"></div>
+    <Float speed={1.4} rotationIntensity={1} floatIntensity={1.2}>
+      <mesh>
+        <octahedronGeometry args={[1.2, 0]} />
+        <meshStandardMaterial
+          color="#6366f1"
+          wireframe
+          emissive="#38bdf8"
+          emissiveIntensity={0.4}
+        />
+      </mesh>
+    </Float>
+  );
+}
 
-        <div className="footer-content">
-          {/* ABOUT */}
-          <div className="footer-column">
-            <h3>About Company</h3>
-            <p>
-              <strong>Address</strong><br />
-              Bhavnagar -364004,<br />
-              Gujarat
-            </p>
-          </div>
+export default function About() {
+  return (
+    <section id="about" className="about-section">
+      {/* 3D */}
+      <div className="about-3d">
+        <Canvas camera={{ position: [0, 0, 4] }}>
+          <ambientLight intensity={0.6} />
+          <pointLight position={[2, 2, 2]} intensity={1} />
+          <Suspense fallback={null}>
+            <AboutCore />
+          </Suspense>
+          <OrbitControls enableZoom={false} />
+        </Canvas>
+      </div>
 
-          {/* SERVICES */}
-          <div className="footer-column">
-            <h3>Service</h3>
-            <ul>
-              <li>SAP Services</li>
-              <li>Planning Solutions Services</li>
-              <li>Staffing Services</li>
-              <li>IT Training Courses</li>
-            </ul>
-          </div>
-
-          {/* LINKS */}
-          <div className="footer-column">
-            <h3>Useful Links</h3>
-            <ul>
-              <li onClick={() => scrollTo("hero")}>Home</li>
-              <li onClick={() => scrollTo("services")}>Services</li>
-              <li onClick={() => scrollTo("contact")}>Contact</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          © 2025. All Rights Reserved | Powered by{" "}
-          <span>⚡ creative stacks</span>
-        </div>
-      </footer>
-
-      {/* FLOATING BUTTONS */}
-      <a href="tel:+917043838310" className="call-btn">
-        <FaPhoneAlt /> <span>Call Now</span>
-      </a>
-
-      <a
-        href="https://wa.me/917043838310"
-        target="_blank"
-        rel="noreferrer"
-        className="whatsapp-btn"
+      {/* CONTENT */}
+      <motion.div
+        className="about-content"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
       >
-        <FaWhatsapp />
-      </a>
-    </>
+        <span className="tag">ABOUT US</span>
+
+        <h1>Meet the Minds Behind Innovation</h1>
+
+        <p>
+          We are a technology-driven team building scalable,
+          secure and future-ready digital products.
+        </p>
+
+        {/* TEAM */}
+        <div className="team-grid">
+          {[
+            {
+             // img: jaydip,
+              name: "Jaydipsinh Parmar",
+            },
+            {
+              //img: sap,
+              name: "Harshdipsinh jadeja",
+              
+            },
+            {
+              //img: ui,
+              name: "Jenil dave",
+            },
+            {
+              //img: ui,
+              name: "Harsh baraiya",
+            },
+            {
+              //img: ui,
+              name: "Harsh dave",
+            },
+          ].map((member, i) => (
+            <motion.div
+              key={i}
+              className="team-card"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              viewport={{ once: true }}
+            >
+              <div className="avatar">
+                <img src={member.img} alt={member.name} />
+              </div>
+              <h3>{member.name}</h3>
+              <span>{member.role}</span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }
