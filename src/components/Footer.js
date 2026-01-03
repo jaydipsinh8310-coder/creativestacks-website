@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import "./Footer.css";
 
 
-
 /* 3D Core */
 function AboutCore() {
   return (
@@ -59,11 +58,9 @@ export default function About() {
         <div className="team-grid">
           {[
             {
-             // img: jaydip,
               name: "Jaydipsinh Parmar",
             },
             {
-              //img: sap,
               name: "Harshdipsinh jadeja",
               
             },
@@ -94,6 +91,7 @@ export default function About() {
               <h3>{member.name}</h3>
               <span>{member.role}</span>
             </motion.div>
+            
           ))}
         </div>
       </motion.div>
