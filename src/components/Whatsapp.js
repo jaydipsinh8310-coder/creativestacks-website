@@ -2,6 +2,19 @@ import React from "react";
 import "./Whatsapp.css";
 
 const Whatsapp = () => {
+  const phoneNumber = "917043838310";
+
+  const whatsappMessage =
+    "Hello 👋, I visited your website and would like to know more about your services.";
+
+  const openWhatsApp = (e) => {
+    e.preventDefault();
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       {/* Call Button - LEFT */}
@@ -11,10 +24,9 @@ const Whatsapp = () => {
 
       {/* WhatsApp Button - RIGHT */}
       <a
-        href="https://wa.me/917043838310"
+        href="/"
+        onClick={openWhatsApp}
         className="whatsapp-float heartbeat"
-        target="_blank"
-        rel="noreferrer"
       >
         <i className="fab fa-whatsapp"></i>
       </a>
