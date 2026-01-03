@@ -5,13 +5,13 @@ const Whatsapp = () => {
   return (
     <>
       {/* Call Button - LEFT */}
-      <a href="tel:+91XXXXXXXXXX" className="call-float heartbeat">
+      <a href="tel:+917043838310" className="call-float heartbeat">
         <i className="fas fa-phone"></i>
       </a>
 
       {/* WhatsApp Button - RIGHT */}
       <a
-        href="https://wa.me/91XXXXXXXXXX"
+        href="https://wa.me/917043838310"
         className="whatsapp-float heartbeat"
         target="_blank"
         rel="noreferrer"
