@@ -1,4 +1,3 @@
-
 import {
   FaCode,
   FaPaintBrush,
@@ -6,6 +5,8 @@ import {
   FaVideo,
   FaBullhorn,
   FaCogs,
+  FaMobileAlt,
+  FaShoppingCart,
 } from "react-icons/fa";
 
 import "./Services.css";
@@ -61,6 +62,24 @@ export default function Services() {
           <h3>SAP Services</h3>
           <p>
             SAP implementation, support, and enterprise business solutions.
+          </p>
+        </div>
+
+        {/* New Service */}
+        <div className="service-card">
+          <FaMobileAlt />
+          <h3>App Development</h3>
+          <p>
+            Native and cross-platform mobile apps tailored to your business needs.
+          </p>
+        </div>
+
+        {/* New Service */}
+        <div className="service-card">
+          <FaShoppingCart />
+          <h3>Shopify Store Setup</h3>
+          <p>
+            Complete Shopify store setup, theme customization, and e-commerce solutions.
           </p>
         </div>
       </div>
