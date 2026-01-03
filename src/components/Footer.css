@@ -128,3 +128,16 @@
 .about-footer:hover {
   opacity: 0.8;
 }
+.footer,
+footer {
+  padding-bottom: 120px; /* space for floating buttons */
+}
+.office-address,
+.footer-content {
+  padding-bottom: 120px;
+}
+@supports (padding: env(safe-area-inset-bottom)) {
+  footer {
+    padding-bottom: calc(150px + env(safe-area-inset-bottom));
+  }
+}

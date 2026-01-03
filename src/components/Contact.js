@@ -31,18 +31,8 @@ export default function VirtualContact() {
 
   return (
     <section className="virtual-contact">
-      {/* 3D Section */}
-      <div className="visual-zone">
-        <Canvas camera={{ position: [0, 0, isMobile ? 4.5 : 3.5] }}>
-          <ambientLight intensity={0.6} />
-          <pointLight position={[2, 2, 2]} intensity={1} />
-          <Suspense fallback={null}>
-            <FloatingCore scale={isMobile ? 0.7 : 1} />
-          </Suspense>
-        </Canvas>
-      </div>
 
-      {/* UI Section */}
+      {/* 🔹 LEFT SIDE → CONTACT FORM */}
       <div className="ui-zone">
         <div className="ui-card animate-card">
           <span className="tag">CONTACT</span>
@@ -78,6 +68,19 @@ export default function VirtualContact() {
           </form>
         </div>
       </div>
+
+      {/* 🔹 RIGHT SIDE → ANIMATED 3D GOLA */}
+      <div className="visual-zone">
+        <Canvas camera={{ position: [0, 0, isMobile ? 4.5 : 3.5] }}>
+          <ambientLight intensity={0.6} />
+          <pointLight position={[2, 2, 2]} intensity={1} />
+          <Suspense fallback={null}>
+            <FloatingCore scale={isMobile ? 0.9 : 1.2} />
+
+          </Suspense>
+        </Canvas>
+      </div>
+
     </section>
   );
 }

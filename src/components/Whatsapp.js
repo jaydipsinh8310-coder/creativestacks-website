@@ -1,18 +1,24 @@
 import React from "react";
-import { FaWhatsapp } from "react-icons/fa";
 import "./Whatsapp.css";
 
 const Whatsapp = () => {
   return (
-    <a
-      href="https://wa.me/917043838310"
-      target="_blank"
-      rel="noreferrer"
-      className="whatsapp-btn"
-      aria-label="Chat on WhatsApp"
-    >
-      <FaWhatsapp />
-    </a>
+    <>
+      {/* Call Button - LEFT */}
+      <a href="tel:+91XXXXXXXXXX" className="call-float heartbeat">
+        <i className="fas fa-phone"></i>
+      </a>
+
+      {/* WhatsApp Button - RIGHT */}
+      <a
+        href="https://wa.me/91XXXXXXXXXX"
+        className="whatsapp-float heartbeat"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <i className="fab fa-whatsapp"></i>
+      </a>
+    </>
   );
 };
 
