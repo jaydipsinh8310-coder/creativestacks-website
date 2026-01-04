@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/creativestacks-website/static/css/main.17379fcc.css",
+    "main.js": "/creativestacks-website/static/js/main.cc06ce33.js",
+    "index.html": "/creativestacks-website/index.html",
+    "main.17379fcc.css.map": "/creativestacks-website/static/css/main.17379fcc.css.map",
+    "main.cc06ce33.js.map": "/creativestacks-website/static/js/main.cc06ce33.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17379fcc.css",
+    "static/js/main.cc06ce33.js"
+  ]
+}
