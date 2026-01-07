@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/creativestacks-website/static/css/main.17379fcc.css",
-    "main.js": "/creativestacks-website/static/js/main.cc06ce33.js",
+    "main.css": "/creativestacks-website/static/css/main.524dbcf1.css",
+    "main.js": "/creativestacks-website/static/js/main.b3543813.js",
     "index.html": "/creativestacks-website/index.html",
-    "main.17379fcc.css.map": "/creativestacks-website/static/css/main.17379fcc.css.map",
-    "main.cc06ce33.js.map": "/creativestacks-website/static/js/main.cc06ce33.js.map"
+    "main.524dbcf1.css.map": "/creativestacks-website/static/css/main.524dbcf1.css.map",
+    "main.b3543813.js.map": "/creativestacks-website/static/js/main.b3543813.js.map"
   },
   "entrypoints": [
-    "static/css/main.17379fcc.css",
-    "static/js/main.cc06ce33.js"
+    "static/css/main.524dbcf1.css",
+    "static/js/main.b3543813.js"
   ]
 }
