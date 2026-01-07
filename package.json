@@ -4,10 +4,16 @@
   "private": true,
   "homepage": "https://jaydipsinh8310-coder.github.io/creativestacks-website",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "framer-motion": "^12.23.26",
+    "gh-pages": "^6.0.0",
+    "react": "^19.3.0-canary-65eec428-20251218",
+    "react-dom": "^19.3.0-canary-65eec428-20251218",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.11.0",
     "react-scripts": "5.0.1",
-    "gh-pages": "^6.0.0"
+    "three": "^0.182.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,5 +22,17 @@
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

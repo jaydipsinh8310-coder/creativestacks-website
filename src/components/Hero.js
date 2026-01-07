@@ -1,36 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./Hero.css";
 
 export default function Hero() {
+  const heroRef = useRef(null);
   const canvasRef = useRef(null);
 
-  /* ===== TYPING EFFECT ===== */
-  const words = ["WEB Development", "IT Solutions", "SAP Services", "DIGITAL Marketing"];
-  const [text, setText] = useState("");
-  const [i, setI] = useState(0);
-  const [j, setJ] = useState(0);
-  const [del, setDel] = useState(false);
-
+  /* ===== 3D PARALLAX ===== */
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!del && j <= words[i].length) {
-        setText(words[i].substring(0, j));
-        setJ(j + 1);
-      } else if (del && j > 0) {
-        setText(words[i].substring(0, j));
-        setJ(j - 1);
-      } else if (!del) {
-        setDel(true);
-      } else {
-        setDel(false);
-        setI((i + 1) % words.length);
-      }
-    }, del ? 60 : 120);
+    const hero = heroRef.current;
+    const move = (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 30;
+      const y = (window.innerHeight / 2 - e.clientY) / 30;
+      hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
 
-    return () => clearTimeout(timeout);
-  }, [j, del, i, words]);
-
-  /* ===== GALAXY CANVAS ===== */
+  /* ===== PARTICLES ===== */
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -38,85 +25,81 @@ export default function Hero() {
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
 
-    const stars = [];
-    const STAR_COUNT = 350;
-    let mx = 0,
-      my = 0;
-
-    window.addEventListener("mousemove", (e) => {
-      mx = (e.clientX / w - 0.5) * 2;
-      my = (e.clientY / h - 0.5) * 2;
-    });
-
     window.addEventListener("resize", () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     });
 
-    class Star {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = (Math.random() - 0.5) * w;
-        this.y = (Math.random() - 0.5) * h;
-        this.z = Math.random() * 2000;
-        this.size = Math.random() * 1.8 + 0.3;
-        this.speed = Math.random() * 6 + 2;
-      }
-      update() {
-        this.z -= this.speed;
-        if (this.z < 1) this.reset();
-      }
-      draw() {
-        const scale = 800 / this.z;
-        const x = this.x * scale + w / 2 + mx * 80;
-        const y = this.y * scale + h / 2 + my * 80;
-        const r = this.size * scale;
+    const dots = Array.from({ length: 220 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5 + 0.4,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      dots.forEach((d, i) => {
+        d.x += d.dx;
+        d.y += d.dy;
+
+        if (d.x < 0 || d.x > w) d.dx *= -1;
+        if (d.y < 0 || d.y > h) d.dy *= -1;
 
         ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(173,216,255,${Math.min(1, scale)})`;
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(56,189,248,0.85)";
         ctx.fill();
-      }
-    }
 
-    for (let i = 0; i < STAR_COUNT; i++) stars.push(new Star());
-
-    function animate() {
-      ctx.fillStyle = "rgba(2,6,23,0.4)";
-      ctx.fillRect(0, 0, w, h);
-      stars.forEach((s) => {
-        s.update();
-        s.draw();
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = d.x - dots[j].x;
+          const dy = d.y - dots[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.strokeStyle = `rgba(56,189,248,${1 - dist / 110})`;
+            ctx.lineWidth = 0.4;
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.stroke();
+          }
+        }
       });
-      requestAnimationFrame(animate);
+      requestAnimationFrame(draw);
     }
-    animate();
+    draw();
   }, []);
 
-  const scrollToServices = () => {
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+  /* ===== SPLIT TEXT ===== */
+  const splitText = (text) => {
+    return text.split("").map((char, i) => (
+      <span key={i} className="char" style={{ '--i': i }}>
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
   };
 
   return (
     <section className="hero">
-      <canvas ref={canvasRef} className="particle-canvas" />
+      <canvas ref={canvasRef} className="hero-canvas" />
+      <div className="hero-spotlight" />
 
-      <div className="hero-overlay"></div>
-
-      <div className="hero-content">
-        <h1>
-          <span className="plain">Creative</span>{" "}
-          <span className="typing">{text}</span>
-          <span className="cursor">|</span>
+      <div className="hero-inner" ref={heroRef}>
+        <h1 className="hero-title">
+          <span className="line">{splitText("We Build")}</span>
+          <span className="line-tech">{splitText("Technology")}</span>
+          <span className="line">{splitText("That Drives Growth")}</span>
         </h1>
 
-        <p>Where technology meets infinite possibilities</p>
+        <p className="hero-sub">
+          High-performance digital solutions crafted for scale & impact
+        </p>
 
-        <button className="btn primary" onClick={scrollToServices}>
-          Explore Services
-        </button>
+        <div className="hero-cta">
+          <a href="#services" className="btn primary">Our Services</a>
+          <a href="#contact" className="btn ghost">Contact Us</a>
+        </div>
       </div>
     </section>
   );

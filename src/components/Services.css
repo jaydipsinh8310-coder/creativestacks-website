@@ -102,3 +102,8 @@
     padding: 26px 22px;
   }
 }
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}

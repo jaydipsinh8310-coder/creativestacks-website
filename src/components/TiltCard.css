@@ -1,0 +1,67 @@
+.tilt-card {
+  position: relative;
+  height: 320px;
+  padding: 32px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Glare */
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255, 255, 255, 0.18),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tilt-card:hover .tilt-glare {
+  opacity: 1;
+}
+
+/* Content */
+.tilt-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transform: translateZ(30px);
+}
+
+.tilt-icon {
+  font-size: 42px;
+  color: #38bdf8;
+  margin-bottom: 18px;
+}
+
+.tilt-content h3 {
+  font-size: 22px;
+  color: #f8fafc;
+  margin-bottom: 12px;
+}
+
+.tilt-content p {
+  font-size: 15px;
+  color: #cbd5f5;
+  line-height: 1.6;
+}
+
+/* Mobile: Disable tilt */
+@media (max-width: 768px) {
+  .tilt-card {
+    transform: none !important;
+  }
+}
