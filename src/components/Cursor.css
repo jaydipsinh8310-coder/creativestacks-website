@@ -1,0 +1,23 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* આનાથી માઉસ જે કલર પર જશે તેનો ઉલટો કલર પકડશે */
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  transform: translate(-50%, -50%);
+}
+
+/* જ્યારે કોઈ વસ્તુ પર હોવર (Hover) કરો ત્યારે માઉસ મોટું થાય */
+.hyper-card:hover ~ .custom-cursor,
+.magnetic-btn:hover ~ .custom-cursor {
+  width: 60px;
+  height: 60px;
+  background: rgba(56, 189, 248, 0.2);
+  border: 2px solid #38bdf8;
+}

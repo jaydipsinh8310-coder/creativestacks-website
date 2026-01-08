@@ -1,109 +1,362 @@
-/* ===============================
-   OUR SERVICES SECTION
-================================ */
-.services {
-  padding: 90px 6%;
-  background: linear-gradient(135deg, #020617, #020c2b);
-  min-height: 100vh;
-  text-align: center;
-}
-
-/* SECTION TITLE */
-.services-title {
-  font-size: 40px;
-  font-weight: 700;
-  margin-bottom: 60px;
-  color: #f8fafc;
-  letter-spacing: 1px;
-}
-
-/* SERVICES GRID */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-}
-
-/* SERVICE CARD */
-.service-card {
-  background: #0f172a;
-  border-radius: 18px;
-  padding: 38px 30px;
-  color: #e5e7eb;
-  cursor: pointer;
-  border: 1px solid #1e293b;
+.services-master {
   position: relative;
+  background: #020617;
+  padding: 120px 5%;
+  min-height: 100vh;
   overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ICON */
-.service-card svg {
-  font-size: 44px;
-  color: #38bdf8;
-  margin-bottom: 18px;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* SERVICE TITLE */
-.service-card h3 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #f1f5f9;
-  margin-bottom: 12px;
-}
-
-/* DESCRIPTION */
-.service-card p {
-  font-size: 15px;
-  color: #cbd5e1;
-  line-height: 1.7;
-}
-
-/* CARD HOVER */
-.service-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px rgba(56, 189, 248, 0.35);
-  border-color: #38bdf8;
-}
-
-/* ICON HOVER */
-.service-card:hover svg {
-  transform: scale(1.2) rotate(3deg);
-  color: #0ea5e9;
-}
-
-/* GLOW OVERLAY */
-.service-card::before {
-  content: "";
+/* 3D Cyber Grid Background */
+.cyber-grid-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(56, 189, 248, 0.18),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  transform: perspective(1000px) rotateX(60deg) translateY(-100px);
+  z-index: 0;
 }
 
-.service-card:hover::before {
+.services-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.pre-title {
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.services-main-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #fff;
+  margin-top: 10px;
+}
+
+.text-highlight {
+  color: #38bdf8;
+  position: relative;
+}
+
+/* HYPER GRID */
+.hyper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1300px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* HYPER CARD - The Apple/Vercel Style */
+.hyper-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 24px;
+  padding: 1px; /* Gap for border glow */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.hyper-card:hover {
+  transform: translateY(-10px);
+}
+
+.card-content {
+  background: #0f172a;
+  padding: 40px;
+  border-radius: 23px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #38bdf8;
+  margin-bottom: 25px;
+  transition: 0.5s;
+}
+
+.hyper-card:hover .icon-box {
+  background: #38bdf8;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* THE MOUSE TRACKING GLOW */
+.hyper-card::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(56, 189, 248, 0.3),
+    transparent 40%
+  );
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.hyper-card:hover::before {
   opacity: 1;
 }
 
-/* MOBILE OPTIMIZATION */
-@media (max-width: 600px) {
-  .services-title {
-    font-size: 30px;
-  }
+.card-content h3 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
 
-  .service-card {
-    padding: 26px 22px;
+.card-content p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* MOBILE ADAPTATION */
+@media (max-width: 768px) {
+  .services-master {
+    padding: 80px 20px;
+  }
+  
+  .hyper-card {
+    background: #1e293b; /* Solidify for better mobile performance */
+  }
+  
+  .cyber-grid-bg {
+    display: none; /* Save GPU on mobile */
   }
 }
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
+/* MAGNETIC BUTTON STYLES */
+.services-footer {
+  margin-top: 100px;
+  text-align: center;
+  z-index: 10;
+}
+
+.services-footer p {
+  color: #94a3b8;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.magnetic-btn {
+  position: relative;
+  padding: 25px 60px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 100px;
+  color: #020617;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  overflow: hidden;
+}
+
+.btn-text-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.magnetic-btn:hover .arrow {
+  transform: translateX(8px);
+}
+
+/* The Animated Fluid Background inside the button */
+.btn-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 300%;
+  background: #fff;
+  border-radius: 40%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 0.8s ease, top 0.5s ease;
+  z-index: 1;
+  opacity: 0;
+}
+
+.magnetic-btn:hover .btn-blob {
+  opacity: 0.2;
+  top: -50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+/* PC vs Mobile performance */
+@media (max-width: 768px) {
+  .magnetic-btn {
+    transform: none !important; /* Disable magnetic pull on touch screens */
+    padding: 20px 40px;
+    font-size: 16px;
+  }
+}
+/* કાર્ડ્સ માટે Reveal એનિમેશન */
+@keyframes cardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hyper-card {
+  position: relative;
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 24px;
+  padding: 1px;
+  overflow: hidden;
+  transition: transform 0.15s ease-out; /* 3D Tilt માટે સ્મૂથનેસ */
+  animation: cardEntry 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--delay);
+}
+
+.card-content {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  padding: 45px 35px;
+  border-radius: 23px;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Icon Animation */
+.icon-wrap {
+  font-size: 35px;
+  color: #38bdf8;
+  margin-bottom: 10px;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hyper-card:hover .icon-wrap {
+  transform: translateZ(50px) scale(1.2); /* 3D માં બહાર આવશે */
+  color: #fff;
+}
+
+/* નીચેની સ્ટાઇલિશ લાઇન */
+.card-footer-line {
+  width: 0;
+  height: 2px;
+  background: #38bdf8;
+  margin-top: auto;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.hyper-card:hover .card-footer-line {
+  width: 100%;
+}
+
+/* Background Floating Effect */
+.cyber-grid-bg {
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+.hyper-card {
+  cursor: pointer;
+  position: relative;
+  /* ... જૂની સ્ટાઈલ રાખવી ... */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* હોવર કરવા પર મેઈન માહિતી થોડી ઉપર જશે */
+.card-main-info {
+  transition: transform 0.4s ease;
+}
+
+.hyper-card:hover .card-main-info {
+  transform: translateY(-20px);
+}
+
+/* EXPLORE BUTTON - શરૂઆતમાં છુપાયેલું હશે */
+.explore-action {
+  position: absolute;
+  bottom: 30px;
+  left: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* હોવર કરવા પર બટન દેખાશે */
+.hyper-card:hover .explore-action {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.small-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.hyper-card:hover .small-arrow {
+  transform: translateX(5px);
+}
+
+/* કાર્ડની બોર્ડર પર લાઈટ ઇફેક્ટ */
+.hyper-card:hover {
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.1);
 }

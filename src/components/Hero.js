@@ -1,106 +1,113 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Hero.css";
 
 export default function Hero() {
-  const heroRef = useRef(null);
   const canvasRef = useRef(null);
+  const transitionRef = useRef(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  /* ===== 3D PARALLAX ===== */
-  useEffect(() => {
-    const hero = heroRef.current;
-    const move = (e) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 30;
-      const y = (window.innerHeight / 2 - e.clientY) / 30;
-      hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
-  /* ===== PARTICLES ===== */
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    let particles = [];
+    let w, h;
 
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
-
-    window.addEventListener("resize", () => {
+    const init = () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
-    });
+      particles = [];
+      const particleCount = Math.min(Math.floor(w * 0.15), 150);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    };
 
-    const dots = Array.from({ length: 220 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.4,
-      dx: (Math.random() - 0.5) * 0.3,
-      dy: (Math.random() - 0.5) * 0.3,
-    }));
-
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      dots.forEach((d, i) => {
-        d.x += d.dx;
-        d.y += d.dy;
-
-        if (d.x < 0 || d.x > w) d.dx *= -1;
-        if (d.y < 0 || d.y > h) d.dy *= -1;
-
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.history = [];
+        this.maxLength = Math.floor(Math.random() * 15 + 10);
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+        this.history.push({ x: this.x, y: this.y });
+        if (this.history.length > this.maxLength) this.history.shift();
+      }
+      draw() {
         ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(56,189,248,0.85)";
-        ctx.fill();
-
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = d.x - dots[j].x;
-          const dy = d.y - dots[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
-            ctx.strokeStyle = `rgba(56,189,248,${1 - dist / 110})`;
-            ctx.lineWidth = 0.4;
-            ctx.beginPath();
-            ctx.moveTo(d.x, d.y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.stroke();
-          }
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+        ctx.lineWidth = 1;
+        for (let i = 0; i < this.history.length - 1; i++) {
+          ctx.moveTo(this.history[i].x, this.history[i].y);
+          ctx.lineTo(this.history[i+1].x, this.history[i+1].y);
         }
-      });
-      requestAnimationFrame(draw);
+        ctx.stroke();
+      }
     }
-    draw();
+
+    const animate = () => {
+      ctx.fillStyle = "rgba(2, 6, 23, 0.15)";
+      ctx.fillRect(0, 0, w, h);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("resize", init);
+    init();
+    animate();
+    return () => window.removeEventListener("resize", init);
   }, []);
 
-  /* ===== SPLIT TEXT ===== */
-  const splitText = (text) => {
-    return text.split("").map((char, i) => (
-      <span key={i} className="char" style={{ '--i': i }}>
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
+  const handleExplore = (e) => {
+    e.preventDefault();
+    setIsTransitioning(true);
+    // Logic for smooth scroll after the liquid animation finishes
+    setTimeout(() => {
+      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => setIsTransitioning(false), 1000);
+    }, 800);
   };
 
   return (
-    <section className="hero">
-      <canvas ref={canvasRef} className="hero-canvas" />
-      <div className="hero-spotlight" />
-
-      <div className="hero-inner" ref={heroRef}>
-        <h1 className="hero-title">
-          <span className="line">{splitText("We Build")}</span>
-          <span className="line-tech">{splitText("Technology")}</span>
-          <span className="line">{splitText("That Drives Growth")}</span>
+    <section className={`flux-hero ${isTransitioning ? "exit-scale" : ""}`}>
+      {/* Liquid Wipe Layer */}
+      <div className={`liquid-layer ${isTransitioning ? "active" : ""}`} />
+      
+      <canvas ref={canvasRef} className="flux-canvas" />
+      
+      <div className="flux-content">
+        <div className="hero-tagline">
+          <span className="dot"></span> Pioneering the Digital Frontier
+        </div>
+        
+        <h1 className="kinetic-text">
+          <span className="word">WE BUILD</span>
+          <span className="word outline">FUTURE</span>
+          <span className="word gradient">SYSTEMS</span>
         </h1>
 
-        <p className="hero-sub">
-          High-performance digital solutions crafted for scale & impact
+        <p className="flux-subtext">
+          We bridge the gap between abstract imagination and high-performance reality. 
         </p>
 
-        <div className="hero-cta">
-          <a href="#services" className="btn primary">Our Services</a>
-          <a href="#contact" className="btn ghost">Contact Us</a>
+        <div className="flux-button-group">
+          <button className="flux-btn primary" onClick={handleExplore}>
+            Explore Services
+            <div className="btn-ray"></div>
+          </button>
+          <button className="flux-btn ghost" onClick={() => window.location.href='#contact'}>
+            Contact Us
+          </button>
         </div>
       </div>
+
+      <div className="geometric-blur"></div>
     </section>
   );
 }
